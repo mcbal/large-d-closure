@@ -119,7 +119,7 @@ def plot(results):
         ax.hist(field["samples"][0], bins=60, density=True, color=color, alpha=0.8, label=f"exact, $D={D}$")
     ax.axvline(field["mean field"][0], color=colors["mean field"], lw=2, label="mean field $\\|\\bar{\\mathbf{h}}\\|^2$")
     ax.axvline(field["closure"][0], color=ink, lw=2, ls="--", label="closure $\\|\\bar{\\mathbf{h}}\\|^2+v$")
-    ax.set_xlabel("$\\|\\mathbf{h}_i\\|^2/R^2$, most concentrated site, step 1")
+    ax.set_xlabel("$\\|\\mathbf{h}_i\\|^2/R^2$, site with the sharpest attention, step 1")
     ax.set_yticks([])
     for side in ("top", "right", "left"):
         ax.spines[side].set_visible(False)
