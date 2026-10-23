@@ -45,7 +45,7 @@ def sketch(ax, t):
     ax.text(t + 0.05, 0.45 * sin, "$\\delta\\mathbf{s}$", color=ORANGE, fontsize=11)
     ax.text(0.5 * t - 0.17, 0.5 * sin + 0.02, "$\\mathbf{s}$", color=BLUE, fontsize=11)
     ax.text(t + 0.2 * sin, -0.85 * sin, "typical samples", color=BLUE, fontsize=8.5)
-    ax.text(0, -1.27, "$\\|\\mathbf{m}\\|^2 + \\|\\delta\\mathbf{s}\\|^2 = R^2$", color=INK, fontsize=10, ha="center")
+    ax.text(0, -1.27, "$\\|\\mathbf{m}\\|^2 + \\|\\delta\\mathbf{s}\\|^2 \\simeq R^2$", color=INK, fontsize=10, ha="center")
     ax.set(aspect="equal", xlim=(-1.3, 1.5), ylim=(-1.4, 1.15))
     ax.axis("off")
     ax.set_title("(a) a ring, not a cap", fontsize=10, color=INK)
@@ -59,7 +59,7 @@ def alignment(ax, field, dims=(8, 64, 512)):
         logp = kappa * t + 0.5 * (D - 3) * np.log1p(-t * t)
         ax.plot(t, np.exp(logp - logp.max()), color=color, lw=2, label=f"$D={D}$")
     ax.axvline(t_star, color=INK, ls=":", lw=1)
-    ax.text(t_star - 0.03, 1.04, "$\\|\\mathbf{m}\\|/R$", color=INK, fontsize=9, ha="right")
+    ax.text(t_star - 0.03, 1.04, "$\\|\\mathbf{m}\\|/R$ at $D\\to\\infty$", color=INK, fontsize=9, ha="right")
     ax.plot(1, 0, "x", color=MUTED, ms=6, clip_on=False)
     ax.text(0.98, 0.07, "mode", color=MUTED, fontsize=8, ha="right")
     ax.set(xlim=(-1, 1), ylim=(0, 1.12), yticks=[], xticks=[-1, -0.5, 0, 0.5, 1],
