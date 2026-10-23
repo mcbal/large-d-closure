@@ -145,10 +145,11 @@ def _mf_means(x, J, M):
 def plot(results):
     import matplotlib.pyplot as plt
 
+    plt.rcParams.update(C.PLOT_STYLE)
     ink, muted, grid = "#29313d", "#707783", "#d9d7d1"
     colors = {"K=4": "#4f7fa8", "snapshot": "#9b7bb8", "average": "#c9a227"}
     labels = {"K=4": "after $K=4$", "snapshot": "stationary, one snapshot", "average": "stationary, time average"}
-    cols = {"q": "means (overlaps)", "D": "delayed correlations $D_{ij}$", "sigma": "entropy production $\\sigma$"}
+    cols = {"q": "means (overlaps)", "D": "delayed correlations $\\mathcal{D}_{ij}$", "sigma": "entropy production $\\sigma$"}
     fig, axes = plt.subplots(1, 3, figsize=(10, 3.4), sharey=True)
     ks = np.array(KS)
     for ax, (obs, title) in zip(axes, cols.items()):
@@ -170,7 +171,7 @@ def plot(results):
         ax.grid(color=grid, lw=0.6)
         for side in ("top", "right"):
             ax.spines[side].set_visible(False)
-    axes[0].set_ylabel("sketch error vs full closure")
+    axes[0].set_ylabel("sampled-closure error vs full closure")
     axes[0].plot([], [], "-", color=muted, lw=2, label="$N=1024$")
     axes[0].plot([], [], "--", color=muted, lw=1, label="$N=256$")
     handles, labs = axes[0].get_legend_handles_labels()

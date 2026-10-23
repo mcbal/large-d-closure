@@ -111,8 +111,10 @@ def robustness(K=4, seed=0):
 def plot(results):
     import matplotlib.pyplot as plt
 
+    plt.rcParams.update(C.PLOT_STYLE)
     ink, muted, grid = "#29313d", "#707783", "#d9d7d1"
     colors = {"mean field": "#d89170", "diagonal C": "#78a58f", "closure": "#4f7fa8"}
+    names = {"mean field": "mean field", "diagonal C": "closure, diagonal $C$", "closure": "closure"}
     fig, (ax, bx) = plt.subplots(1, 2, figsize=(10, 3.6), gridspec_kw={"width_ratios": [1.4, 1]})
     for run in results["concentration"]:
         ne = np.array(run["N_eff"])
@@ -133,12 +135,12 @@ def plot(results):
     ax.set_xlim(0.7, None)
     ax.set_xlabel("effective number of inputs $N_{\\mathrm{eff},i}$ (causal attention)")
     ax.set_ylabel("per-site error of $\\mathbf{m}_i$, $K=1$")
-    ax.set_title(f"(a) concentration, $D={results['concentration'][0]['D']}$", fontsize=10, color=ink)
+    ax.set_title(f"(a) norm inflation, $D={results['concentration'][0]['D']}$", fontsize=10, color=ink)
     ax.legend(frameon=False, fontsize=7, loc="upper right")
 
     share = results["sharing"]
     K = 4
-    groups = [("q", "means"), ("D", "delayed $D_{ij}$")]
+    groups = [("q", "means"), ("D", "delayed $\\mathcal{D}_{ij}$")]
     width = 0.13
     for g, (obs, title) in enumerate(groups):
         for s, label in enumerate(("scattered", "common")):
@@ -146,7 +148,7 @@ def plot(results):
                 pos = g + (s - 0.5) * 0.45 + (n - 1) * width
                 val = share[label]["errors"][f"{name} {obs} {K}"]
                 bx.bar(pos, val, width, color=colors[name], alpha=1 if label == "common" else 0.55,
-                       label=name if g == 0 and s == 1 else None)
+                       label=names[name] if g == 0 and s == 1 else None)
             bx.text(g + (s - 0.5) * 0.45, -0.02, label, ha="center", va="top", fontsize=7, color=muted,
                     transform=bx.get_xaxis_transform())
     bx.set_xticks([0, 1], [t for _, t in groups])

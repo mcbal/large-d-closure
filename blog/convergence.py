@@ -64,13 +64,14 @@ def run(D, N, beta, u, sharpness, K, k, seed):
 def plot(results):
     import matplotlib.pyplot as plt
 
+    plt.rcParams.update(C.PLOT_STYLE)
     ink, muted, grid = "#29313d", "#707783", "#d9d7d1"
     colors = {"mean field": "#d89170", "diagonal C": "#78a58f", "closure": "#4f7fa8", "sampled": "#9b7bb8"}
     labels = {"mean field": "mean field", "diagonal C": "closure, diagonal $C$", "closure": "closure",
               "sampled": f"sampled closure, $k={results['setup']['k']}$"}
     K, N = results["setup"]["K"], results["setup"]["N"]
     dims = np.array([r["D"] for r in results["runs"]])
-    cols = {"q": "means (overlaps)", "D": "delayed correlations $D_{ij}$", "C": "equal-time $C_{i\\neq j}$"}
+    cols = {"q": "means (overlaps)", "D": "delayed correlations $\\mathcal{D}_{ij}$", "C": "equal-time $C_{i\\neq j}$"}
     fig, axes = plt.subplots(2, 3, figsize=(10, 6), sharex=True)
     for i, step in enumerate((1, K)):
         rows = [r["rows"][step - 1] for r in results["runs"]]
@@ -112,18 +113,21 @@ def plot(results):
         fig.savefig(HERE / f"convergence.{ext}", dpi=200)
 
     # Field norm of the most concentrated site at step 1, two dimensions.
-    fig, ax = plt.subplots(figsize=(4.6, 3.0))
+    fig, ax = plt.subplots(figsize=(6.4, 3.0))
     for D, color in ((64, "#b7c7d8"), (1024, "#4f7fa8")):
         run_ = next(r for r in results["runs"] if r["D"] == D)
         field = run_["rows"][0]["field"]
-        ax.hist(field["samples"][0], bins=60, density=True, color=color, alpha=0.8, label=f"exact, $D={D}$")
-    ax.axvline(field["mean field"][0], color=colors["mean field"], lw=2, label="mean field $\\|\\bar{\\mathbf{h}}\\|^2$")
-    ax.axvline(field["closure"][0], color=ink, lw=2, ls="--", label="closure $\\|\\bar{\\mathbf{h}}\\|^2+v$")
-    ax.set_xlabel("$\\|\\mathbf{h}_i\\|^2/R^2$, site with the sharpest attention, step 1")
+        ax.hist(field["samples"][0], bins=60, density=True, color=color, alpha=0.8,
+                label=f"exact sampling, $D={D}$")
+    ax.axvline(field["mean field"][0], color=colors["mean field"], lw=2,
+               label="mean field $\\|\\bar{\\mathbf{h}}_i\\|^2$")
+    ax.axvline(field["closure"][0], color=ink, lw=2, ls="--", label="closure $\\|\\bar{\\mathbf{h}}_i\\|^2+v_i$")
+    ax.set_xlabel("$\\|\\mathbf{h}_i\\|^2/R^2$", fontsize=11)
+    ax.tick_params(labelsize=9)
     ax.set_yticks([])
     for side in ("top", "right", "left"):
         ax.spines[side].set_visible(False)
-    ax.legend(frameon=False, fontsize=7)
+    ax.legend(frameon=False, fontsize=9, loc="upper left", bbox_to_anchor=(0.1, 1.0))
     fig.tight_layout()
     for ext in ("png", "svg"):
         fig.savefig(HERE / f"fieldnorm.{ext}", dpi=200)

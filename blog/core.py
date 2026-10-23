@@ -23,6 +23,11 @@ def order(D):
     return D / 2 - 1
 
 
+# Computer Modern text and math in every figure, to match the post's MathJax.
+PLOT_STYLE = {"font.family": "serif", "font.serif": ["cmr10"], "mathtext.fontset": "cm",
+              "axes.formatter.use_mathtext": True}
+
+
 # --- single site ------------------------------------------------------------
 
 

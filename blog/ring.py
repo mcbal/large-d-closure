@@ -14,6 +14,8 @@ from pathlib import Path
 import numpy as np
 from matplotlib.patches import Ellipse, FancyArrowPatch
 
+import core as C
+
 HERE = Path(__file__).resolve().parent
 
 INK, MUTED, GRID = "#29313d", "#707783", "#d9d7d1"
@@ -55,7 +57,7 @@ def alignment(ax, field, dims=(8, 64, 512)):
     for D, color in zip(dims, (ORANGE, GREEN, BLUE)):
         kappa = field * (D / 2 - 1)  # beta R |h| with |h| = field R / beta
         logp = kappa * t + 0.5 * (D - 3) * np.log1p(-t * t)
-        ax.plot(t, np.exp(logp - logp.max()), color=color, lw=2, label=f"D = {D}")
+        ax.plot(t, np.exp(logp - logp.max()), color=color, lw=2, label=f"$D={D}$")
     ax.axvline(t_star, color=INK, ls=":", lw=1)
     ax.text(t_star - 0.03, 1.04, "$\\|\\mathbf{m}\\|/R$", color=INK, fontsize=9, ha="right")
     ax.plot(1, 0, "x", color=MUTED, ms=6, clip_on=False)
@@ -71,6 +73,7 @@ def alignment(ax, field, dims=(8, 64, 512)):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
+    plt.rcParams.update(C.PLOT_STYLE)
     field = 2.0
     fig, axes = plt.subplots(1, 2, figsize=(7.6, 3.4), gridspec_kw={"width_ratios": [1, 1.25]})
     sketch(axes[0], field / (1 + np.sqrt(1 + field**2)))

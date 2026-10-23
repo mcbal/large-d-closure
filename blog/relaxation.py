@@ -93,10 +93,12 @@ def table():
 def plot(results):
     import matplotlib.pyplot as plt
 
+    plt.rcParams.update(C.PLOT_STYLE)
     ink, muted, grid = "#29313d", "#707783", "#d9d7d1"
     colors = {"mean field": "#d89170", "diagonal C": "#78a58f", "closure": "#4f7fa8"}
     labels = {"mean field": "mean field", "diagonal C": "closure, diagonal $C$", "closure": "closure"}
-    cols = {"q": "means (overlaps)", "D": "delayed correlations $D_{ij}$"}
+    rows = {"diffuse": "diffuse", "concentrated": "sharp"}
+    cols = {"q": "means (overlaps)", "D": "delayed correlations $\\mathcal{D}_{ij}$"}
     inf = 200  # where the stationary point is drawn
     fig, axes = plt.subplots(2, 2, figsize=(8.4, 6), sharex=True)
     for i, ensemble in enumerate(ENSEMBLES):
@@ -124,7 +126,7 @@ def plot(results):
                 ax.set_title(title, fontsize=10, color=ink)
             if i == 1:
                 ax.set_xlabel("update $K$")
-        axes[i, 0].set_ylabel(f"{ensemble} ($N_{{\\mathrm{{eff}}}}\\approx{ne:.0f}$)\nrelative error")
+        axes[i, 0].set_ylabel(f"{rows[ensemble]} ($N_{{\\mathrm{{eff}}}}\\approx{ne:.0f}$)\nrelative error")
     axes[0, 0].plot([], [], "-", color=muted, lw=2, label="$D=256$")
     axes[0, 0].plot([], [], "--", color=muted, lw=1, label="$D=64$")
     handles, labs = axes[0, 0].get_legend_handles_labels()

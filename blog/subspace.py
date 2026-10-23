@@ -126,6 +126,7 @@ def run(case, rank, D):
 def plot(results):
     import matplotlib.pyplot as plt
 
+    plt.rcParams.update(C.PLOT_STYLE)
     ink, muted, grid = "#29313d", "#707783", "#d9d7d1"
     colors = {("signal", 1): "#d89170", ("signal", 8): "#9b7bb8", ("generic", 1): "#78a58f", ("generic", 8): "#4f7fa8"}
     labels = {("signal", 1): "drives in rank 1", ("signal", 8): "drives in rank 8",
@@ -167,7 +168,7 @@ def plot(results):
                 ax.plot(Da[~ok], err[~ok], style[0], color=col, mfc="white", ms=4 if style == "o-" else 3)
     ax.plot([], [], "o-", color=muted, label="subspace variance, isotropic share")
     ax.plot([], [], "s--", color=muted, label="subspace variance, resolved")
-    ax.plot([], [], "^:", color=muted, label="closure $D_{ij}$ (traces)")
+    ax.plot([], [], "^:", color=muted, label="closure $\\mathcal{D}_{ij}$ (traces)")
     ax.plot([], [], "o", color=muted, mfc="white", ls="none", label="interval includes zero")
     ax.set_xscale("log", base=2)
     ax.set_yscale("log")
