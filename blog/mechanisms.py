@@ -1,4 +1,4 @@
-"""Sec. 2: what sets the gaps (D = 64, N = 256).
+"""Norm inflation and shared inputs (D = 64, N = 256).
 
 (a) Concentration, K = 1, D = 256: causal softmax couplings span N_eff,i from 1
     to ~N in one run. Per-site errors of mean field and the closure against

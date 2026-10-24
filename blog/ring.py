@@ -1,4 +1,4 @@
-"""The ring picture of a high-dimensional vMF, for the post's one-spin section.
+"""The ring picture of a high-dimensional vMF, for the post's High-dimensional vMF geometry section.
 
 (a) Sketch: at large D the samples of a vMF spin sit on a thin ring at a fixed
     latitude of the sphere. The mean sits at the ring's center, so mean, noise

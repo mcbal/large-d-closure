@@ -11,3 +11,7 @@ venv/
 .idea/
 *.swp
 .DS_Store
+
+# Generated figures (redraw with --plot)
+blog/*.png
+blog/*.svg

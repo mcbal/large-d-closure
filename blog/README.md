@@ -5,12 +5,12 @@ Code for the numerical checks in the blog post *A Large-D Closure for Asymmetric
 | File | What it does | Outputs |
 |---|---|---|
 | `core.py` | Shared library: mean-field, closure and sampled-closure recursions, exact vMF sampling (`simulate`, `stationary`), estimators, `error` / `error_interval` | — |
-| `ring.py` | The ring picture of a high-dimensional vMF spin | Fig. 1: `ring.{png,svg}` |
-| `convergence.py` | Convergence in D | Figs. 2–3: `convergence.{png,svg,json}`, `fieldnorm.{png,svg}` |
-| `mechanisms.py` | What sets the gaps | Fig. 4: `mechanisms.{png,svg,json}` |
-| `relaxation.py` | Relaxation and the stationary state, including the $(u,\beta)=(1,1)$ table | Fig. 5: `relaxation.{png,svg,json}` |
-| `sketch.py` | The sampled closure, including the timing table | Fig. 6: `sketch.{png,svg,json}` |
-| `subspace.py` | Appendix E: the signal subspace | Fig. 7: `subspace.{png,svg,json}` |
+| `ring.py` | High-dimensional vMF geometry: the ring picture of a vMF spin | Fig. 1: `ring.{png,svg}` |
+| `convergence.py` | Convergence in D, including the squared field-norm histogram | Figs. 2–3: `convergence.{png,svg,json}`, `fieldnorm.{png,svg}` |
+| `mechanisms.py` | Norm inflation and shared inputs | Fig. 4: `mechanisms.{png,svg,json}` |
+| `relaxation.py` | The stationary state: relaxation, and the stationary $(u,\beta)$ sweep behind the table and the low-temperature checks | Fig. 5: `relaxation.{png,svg,json}` |
+| `sketch.py` | Carrying noise instead of a matrix (K > 1): the sampled closure | Fig. 6: `sketch.{png,svg,json}` |
+| `subspace.py` | Supplementary, not in the post: fluctuations inside a signal subspace | `subspace.{png,svg,json}` |
 | `checks/check_estimators.py` | Bias and interval coverage of the reference estimators on a tiny shared-input system, against the earlier `checks/core_before_unbiased.py` | printed table |
 
 The `.json` files hold the results behind the post's figures and tables.

@@ -1,11 +1,11 @@
-"""Appendix E: fluctuations inside the signal subspace (N = 64, beta = 2, u = 1, sharpness 3, K = 4).
+"""Supplementary (not in the post): fluctuations inside the signal subspace (N = 64, beta = 2, u = 1, sharpness 3, K = 4).
 
 Drives and initializer fields confined to a random r-dimensional subspace (r = 1, 8),
 against a generic control (full-rank drives, a random subspace of the same rank). The
 closure carries traces only, so the most it can say about a subspace is the
 isotropic share (r/D) C_ii. Exact sampling measures the subspace variance. A
 "resolved" recursion carries r x r subspace blocks of the covariance; a "naive"
-variant puts the single-spin anisotropy (variance smaller by 1/gamma) along the
+variant puts the single-spin anisotropy (variance smaller by a factor gamma) along the
 mean field and propagates with the plain gain.
 
     python subspace.py           # runs, writes subspace.json and figure

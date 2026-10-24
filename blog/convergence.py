@@ -1,4 +1,4 @@
-"""Sec. 1: convergence in D at fixed couplings (N = 256, beta = 2, u = 1, sharpness 3, K = 4).
+"""Convergence in D at fixed couplings (N = 256, beta = 2, u = 1, sharpness 3, K = 4).
 
     python convergence.py           # runs the sweep, writes convergence.json and figures
     python convergence.py --plot    # redraws from convergence.json
@@ -81,7 +81,7 @@ def plot(results):
                 if step == 1 and name in ("diagonal C", "sampled") and obs != "C":
                     continue  # identical to the closure at K = 1 from a product start
                 if name == "sampled" and obs != "q" or name in ("mean field", "diagonal C") and obs == "C":
-                    continue  # no off-diagonal C (mean field, diagonal); sampled entries are Sec. 4
+                    continue  # no off-diagonal C (mean field, diagonal); sampled entries: see sketch.py
                 err = np.array([r[f"{name} {obs}"] for r in rows])
                 band = np.array([r[f"{name} {obs} 2se"] for r in rows])
                 resolved = err - band > 0  # interval excludes zero

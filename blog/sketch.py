@@ -1,10 +1,10 @@
-"""Sec. 4: carrying noise instead of a matrix (D = 64, beta = 2, u = 1, sharpness 3).
+"""Carrying noise instead of a matrix (K > 1) (D = 64, beta = 2, u = 1, sharpness 3).
 
 Sketch error of the scalar-channel closure against the full closure, for means,
 delayed correlations D_ij and the entropy production sigma, versus the number of
 channels k, at N in {256, 1024}: after K = 4 updates and at stationarity (one
 snapshot, and a time average over 200 updates). Exact sampling gives the
-closure's own error for scale. Also per-step runtimes.
+closure's own error for scale.
 
     python sketch.py           # runs, writes sketch.json and figure
     python sketch.py --plot    # redraws from sketch.json

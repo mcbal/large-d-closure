@@ -1,7 +1,8 @@
 """Shared core for the numerical checks: problems, recursions, exact sampling, errors.
 
-Same model and conventions as largeD.py (R^2 = D/2 - 1, product start, raw
-covariance traces), with a faster exact sampler:
+Conventions: spin length R with R^2 = D/2 - 1, a product start (independent vMF
+spins in initializer fields), and covariances stored as raw traces over vector
+components. The exact sampler is optimized as follows:
 
 - spins are stored as (N, B, D), so fields and Gram sums are single matmuls;
 - chains run in worker processes with single-threaded BLAS;

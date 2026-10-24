@@ -1,7 +1,7 @@
-"""Sec. 3: relaxation and the stationary state (N = 64, the previous post's ensemble).
+"""The stationary state: relaxation and stationary errors (N = 64, the previous post's ensemble).
 
 Trajectories to K = 100 at D in {64, 256} for diffuse (sharpness 1, the previous
-post) and concentrated (sharpness 3) couplings at (beta, u) = (2, 1), with the
+post) and sharp (sharpness 3; "concentrated" in the JSON) couplings at (beta, u) = (2, 1), with the
 stationary errors as the end point. A stationary table over a few (u, beta)
 points and D in {16, 64, 256, 1024} for the diffuse ensemble, including the
 housekeeping entropy production sigma = beta sum_ij (J - J^T)_ij D_ij.
