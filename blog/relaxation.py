@@ -113,8 +113,9 @@ def plot(results):
                     err = [r[f"{name} {obs}"] for r in run["rows"]]
                     ax.plot(steps, err, "-" if solid else "--", color=color, lw=2 if solid else 1, alpha=1 if solid else 0.7,
                             label=f"{labels[name]}" if solid and i == 0 and j == 0 else None)
-                    ax.plot([inf], [run["stationary"][f"{name} {obs}"]], "o" if solid else "o", color=color,
-                            ms=6 if solid else 4, mfc=color if solid else "white")
+                    err, band = run["stationary"][f"{name} {obs}"], run["stationary"][f"{name} {obs} 2se"]
+                    ax.plot([inf], [err], "s", color=color, ms=5.5 if solid else 4, alpha=1 if solid else 0.7,
+                            mfc=color if err - band > 0 else "white")  # hollow: interval includes zero, as in Fig. 3
                 ne = run["N_eff mean"]
             ax.set_xscale("log", base=2)
             ax.set_yscale("log")
