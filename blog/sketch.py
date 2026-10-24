@@ -160,8 +160,9 @@ def plot(results):
                 ax.plot(ks, [r[obs] for r in rows], "o-" if solid else "o--", color=color, lw=2 if solid else 1,
                         ms=4 if solid else 3, alpha=1 if solid else 0.7, label=labels[mode] if solid and obs == "q" else None)
             if solid:
-                ax.axhline(run["physical"]["K=4"][obs], color=ink, lw=1, ls=":",
-                           label="closure vs exact, $K=4$" if obs == "q" else None)
+                for ref, mode in (("K=4", "K=4"), ("stationary", "average")):
+                    ax.axhline(run["physical"][ref][obs], color=colors[mode], lw=1, ls=":",
+                               label=f"closure vs exact, {'$K=4$' if ref == 'K=4' else ref}" if obs == "q" else None)
         ax.plot(ks, 0.5 * np.sqrt(ks[0] / ks), color=muted, lw=1, ls="-.", label="$\\propto k^{-1/2}$" if obs == "q" else None)
         ax.set_xscale("log", base=2)
         ax.set_yscale("log")
