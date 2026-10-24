@@ -2,6 +2,8 @@
 
 Code for the blog post [A Large-D Closure for Asymmetric Kinetic Vector-Spin Systems](https://mcbal.github.io/post/a-large-d-closure-for-asymmetric-kinetic-vector-spin-systems/).
 
+<img src="assets/featured.jpg" alt="" width="50%">
+
 At large vector dimension $D$, the noise in the field gives it a predictable extra length. Evaluating the response gain at that length yields a closure for means and covariance traces of driven stochastic vector-spin systems, with errors falling roughly as $1/D$.
 
 ## Contents
